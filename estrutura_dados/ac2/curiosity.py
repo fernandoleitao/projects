@@ -61,7 +61,6 @@ class Curiosity():
         self.compartimento_rochas = []
         self.compartimento_lixo = []
 
-
     def coletar_rocha(self, rocha):
         if rocha.get_peso() <= self.rocha_max_peso \
            and rocha.get_tamanho() <= self.rocha_max_tamanho:
