@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sala de Aula</title>
+    </head>
+    <body>
+    <p><b>Lista de Professores</b></p>
+        <div id="professores">
+        {% for item in professores %}
+        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}</b></li>
+        {% endfor %}
+        </div>
+        
+        <br>
+        
+        <p><b>Lista de Alunos</b></p>
+        <div id="alunos">
+        {% for item in alunos %}
+        <li>ID: {{ item['id'] }}, Nome: {{ item['nome'] }}</b></li>
+        {% endfor %}
+        </div>
+    </body>
+</html>
