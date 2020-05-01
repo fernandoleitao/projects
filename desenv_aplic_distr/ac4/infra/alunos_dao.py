@@ -13,8 +13,8 @@ def listar():
         cursor.execute(f"SELECT * FROM {model_name}")
         rows = cursor.fetchall()
         registros = []
-        for (id, nome) in rows:
-            registros.append(Aluno.criar({"id": id, "nome": nome}))
+        for (id, nome, matricula) in rows:
+            registros.append(Aluno.criar({"id": id, "nome": nome, "matricula": matricula}))
         return registros
 
 def consultar(id):
@@ -23,12 +23,12 @@ def consultar(id):
         row = cursor.fetchone()
         if row == None:
             return None
-        return Aluno.criar({"id": row[0], "nome": row[1]})
+        return Aluno.criar({"id": row[0], "nome": row[1], "matricula": row[2]})
 
 def cadastrar(aluno):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
-        sql = f"INSERT INTO {model_name} (id, nome) VALUES (?, ?)"
-        result = cursor.execute(sql, (aluno.id, aluno.nome))
+        sql = f"INSERT INTO {model_name} (id, nome, matricula) VALUES (?, ?, ?)"
+        result = cursor.execute(sql, (aluno.id, aluno.nome, aluno.matricula))
         connection.commit()
         if cursor.lastrowid:
             return aluno.__dict__()
@@ -37,8 +37,8 @@ def cadastrar(aluno):
 
 def alterar(aluno):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
-        sql = f"UPDATE {model_name} SET nome = ? WHERE id = ?"
-        cursor.execute(sql, (aluno.nome, aluno.id))
+        sql = f"UPDATE {model_name} SET nome = ? , matricula = ? WHERE id = ?"
+        cursor.execute(sql, (aluno.nome, aluno.matricula, aluno.id))
         connection.commit()
 
 def remover(aluno):

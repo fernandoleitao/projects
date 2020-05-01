@@ -1,13 +1,15 @@
 class Aluno():
-    def __init__(self, id, nome):
+    def __init__(self, id, nome, matricula):
         self.id = id
         self.nome = nome
+        self.matricula = matricula
 
     def atualizar(self, dados):
         try:
             id = dados["id"]
             nome = dados["nome"]
-            self.id, self.nome = id, nome
+            matricula = dados["matricula"]
+            self.id, self.nome, self.matricula = id, nome, matricula
             return self
         except Exception as e:
             print("Problema ao criar novo aluno!")
@@ -17,6 +19,7 @@ class Aluno():
         d = dict()
         d['id'] = self.id
         d['nome'] = self.nome
+        d['matricula'] = self.matricula
         return d
 
     @staticmethod
@@ -24,7 +27,8 @@ class Aluno():
         try:
             id = dados["id"]
             nome = dados["nome"]
-            return Aluno(id=id, nome=nome)
+            matricula = dados["matricula"]
+            return Aluno(id=id, nome=nome, matricula=matricula)
         except Exception as e:
             print("Problema ao criar novo aluno!")
             print(e)

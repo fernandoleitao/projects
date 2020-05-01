@@ -27,7 +27,9 @@ def alterar_aluno(id):
     aluno_data = request.get_json()
     if ('nome' not in aluno_data):
         return jsonify({'erro':'aluno sem nome'}), 400
-    atualizado = service_atualiza(id, aluno_data['nome'])
+    if ('matricula' not in aluno_data):
+        return jsonify({'erro':'aluno sem matricula'}), 400
+    atualizado = service_atualiza(id, aluno_data['nome'], aluno_data['matricula'])
     if atualizado != None:
         return jsonify(atualizado), 200
     return jsonify({'erro':'aluno nao encontrado'}), 400

@@ -29,8 +29,8 @@ def remover(id):
     dao_remover(Aluno.criar(dados_aluno))
     return 1
 
-def atualizar(id, nome):
-    aluno = Aluno.criar({"id": id, "nome":nome})
+def atualizar(id, nome, matricula):
+    aluno = Aluno.criar({"id": id, "nome":nome, "matricula":matricula})
     dao_alterar(aluno)
     return localizar(id)
     
